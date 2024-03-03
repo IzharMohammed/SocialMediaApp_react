@@ -1,9 +1,10 @@
 import React from 'react'
 import PostCard from './PostCard'
+import Navbar from './Navbar/Navbar'
 function SocialApp() {
   return (
     <div>
-        <div>SocialApp</div>
+       <Navbar />
         <PostCard />
     </div>
   )
