@@ -1,8 +1,9 @@
-# React + Vite
+All commands used to set up this project : 
+`npm create vite@latest` -> This is to  setup vite project
+ `npm install` -> install dependencies mentioned in package.json file created by vite
+ `npm run dev` -> runs the react server
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ `https://mui.com/material-ui/getting-started/installation/` -> mui installation site
+ `npm install @mui/material @emotion/react @emotion/styled` -> install material ui
+ `npm install @fontsource/roboto` -> install mui roboto font 
+ `npm install @mui/icons-material` -> install material icons 
