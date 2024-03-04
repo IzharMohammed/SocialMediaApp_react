@@ -5,7 +5,7 @@ import MainContainer from './MainContainer/MainContainer'
 function SocialApp() {
   return (
     <div>
-       <Navbar />
+           <Navbar />
     `     <MainContainer />
 
     </div>
