@@ -10,10 +10,13 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import { useState } from "react";
 export default function PostCard({name , image , content}) {
+  const [isLiked, setisLiked] = useState(true);
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 , mb : "3rem"}}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -25,7 +28,7 @@ export default function PostCard({name , image , content}) {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title={name}
         subheader="September 14, 2016"
       />
       <CardMedia
@@ -40,8 +43,11 @@ export default function PostCard({name , image , content}) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+         <IconButton aria-label="add to favorites" onClick={()=>setisLiked(!isLiked)}>
+          {
+          (isLiked) ?  < FavoriteBorderIcon   />   : < FavoriteOutlinedIcon sx={{color : red[500]}} />
+          }
+       
         </IconButton>
       </CardActions>
     </Card>

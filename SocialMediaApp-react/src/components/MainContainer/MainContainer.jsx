@@ -15,9 +15,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function RowAndColumnSpacing() {
   return (
-    <Box display="flex" justifyContent="space-around" alignItems="center" sx={{ width: "100%" }}>
-      <Grid container justifyContent={"center"} alignItems={"start"} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid   md={6}>
+    <Box  sx={{ width: "100%" }}>
+      <Grid container justifyContent={"center"} alignItems={"start"} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 0 }}>
+        <Grid  container justifyContent={"center"} md={2}>
          <UserList />
         </Grid>
         <Grid
@@ -25,7 +25,7 @@ export default function RowAndColumnSpacing() {
           justifyContent="center"
           alignItems="center"
           direction="column"
-          md={6}
+          md={4}
         >
        <PostCardList />
         </Grid>
