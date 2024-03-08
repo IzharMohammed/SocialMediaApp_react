@@ -13,7 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function RowAndColumnSpacing() {
+export default function MainContainer() {
   return (
     <Box  sx={{ width: "100%" }}>
       <Grid container justifyContent={"center"} alignItems={"start"} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 0 }}>

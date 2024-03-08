@@ -14,10 +14,9 @@ function PostCardList() {
       .then((resopnse) => {
         console.log(resopnse.data);
         console.log(resopnse.data.data);
-
         setPost(resopnse.data.data);
       });
-  }, []);
+  }, [posts]);
 
   return (
     <>

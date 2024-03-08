@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import { useState ,useEffect} from "react";
 import axios from "axios";
 
-export default function CheckboxListSecondary() {
+export default function UserList() {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     axios
@@ -18,9 +18,7 @@ export default function CheckboxListSecondary() {
         },
       })
       .then((resopnse) => {
-        
         console.log(resopnse.data.data);
-
         setUsers(resopnse.data.data);
       });
   }, []);
