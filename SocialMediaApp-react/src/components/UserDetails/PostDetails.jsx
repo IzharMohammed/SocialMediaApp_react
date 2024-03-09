@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -17,6 +15,8 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
+
+
 
 function PostDetails() {
     let date = new Date();
@@ -26,9 +26,9 @@ function PostDetails() {
   const [isLiked, setisLiked] = useState(true);
   const [loading, setLoading] = useState(true);
   const[update,setUpdate] = useState(true);
+  const[updatedText , setupdatedText] = useState('');
 
-  axios
-    .get(`https://dummyapi.io/data/v1/post/${postid}`, {
+  axios .get(`https://dummyapi.io/data/v1/post/${postid}`, {
       headers: {
         "app-id": import.meta.env.VITE_APP_ID,
       },
@@ -53,11 +53,35 @@ function PostDetails() {
       });
   };
 
-    const updatePost = (id) =>{
-        console.log("Mission Successful ....");
-        console.log(id);
-    }
+  const updatePost = (id) =>{
+    console.log(id);
+    console.log(updatedText);
+    axios.put(`https://dummyapi.io/data/v1/post/${id}`, 
+    { 'text' : updatedText  } ,
+    {
+        headers: {
+            "app-id": import.meta.env.VITE_APP_ID,
+        }
+    }).then(response=>{
+          console.log("Mission Successful ....");
+        console.log(response);
+        setUpdate(true);
+      })
+}
 
+
+
+
+const handleTextChange = (e)=>{
+    e.preventDefault();
+    setupdatedText(e.target.value);
+    console.log(updatedText);
+}
+
+    const toggleChange = () =>{
+    setUpdate(false);
+
+    }
 
   if (loading) {
     return <div>Loading ....</div>;
@@ -76,7 +100,6 @@ function PostDetails() {
             </IconButton>
           }
           title={post.owner.firstName + " " + post.owner.lastName}
-          //   subheader={date.split("T")[0]}
         />
         <CardMedia
           component="img"
@@ -84,22 +107,9 @@ function PostDetails() {
           image={post.image}
           alt="Paella dish"
         />
- 
- {/*          {  if(update){
-                       <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    {post.text}
-                </Typography>
-                </CardContent>
-            }else{
-                <TextField id="standard-basic" label="Standard" variant="standard" />
-            }} */}
-
-
-          <Typography variant="body2" color="text.secondary">
-            {post.text}
-            <TextField id="standard-basic" label="Standard" variant="standard" />
-          </Typography> 
+        {
+            update ?   post.text :    <TextField sx={{width : '20rem',mt: "1rem",ml:"1rem"}} value={updatedText} onChange={handleTextChange} id="standard-basic" label="Standard" variant="standard" />
+        }
         
         <CardActions disableSpacing>
 
@@ -111,9 +121,13 @@ function PostDetails() {
             <DeleteIcon />
           </IconButton>
 
-          <IconButton onClick={()=>updatePost(post.id)} aria-label="edit">
+          <IconButton onClick={toggleChange} aria-label="edit">
           <EditIcon />
           </IconButton>
+
+          <IconButton onClick={()=>updatePost(post.id)} aria-label="save">
+              Save
+            </IconButton>
         </CardActions>
       </Card>
     );
