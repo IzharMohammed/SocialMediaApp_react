@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import PostCard from "../PostCard";
-import axios from "axios";
 import postsContext from "../../provider/PostsProvider";
+
 function PostCardList() {
   // const [posts, setPost] = useState([]);
-const {posts , setPost} = useContext(postsContext);
+const {posts} = useContext(postsContext);
 
   return (
     <>

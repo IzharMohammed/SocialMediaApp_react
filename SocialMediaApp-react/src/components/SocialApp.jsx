@@ -8,20 +8,16 @@ import axios from "axios";
 function SocialApp() {
   const[posts,setPost]=useState([]);
   useEffect(() => {
-    axios
-      .get("https://dummyapi.io/data/v1/post?limit=30", {
+    axios.get("https://dummyapi.io/data/v1/post?limit=30", {
         headers: {
           "app-id": import.meta.env.VITE_APP_ID,
         },
       })
       .then((resopnse) => {
-
-        console.log(resopnse.data);
-        console.log(resopnse.data.data);
-        console.log();
         setPost(resopnse.data.data);
       });
   }, []);
+
   return (
     <div>
        <postsContext.Provider value={{posts , setPost}}>
