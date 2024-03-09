@@ -7,6 +7,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import { useState ,useEffect} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"
 
 export default function UserList() {
   const [users, setUsers] = useState([]);
@@ -33,6 +34,7 @@ export default function UserList() {
         const labelId = `checkbox-list-secondary-label-${user.id}`;
         return (
           <ListItem key={user.id} disablePadding>
+            <Link className="links" to={`user/${user.id}`}>
             <ListItemButton>
               <ListItemAvatar>
                 <Avatar
@@ -41,6 +43,7 @@ export default function UserList() {
               </ListItemAvatar>
               <ListItemText id={labelId} primary={user.firstName+"  "+ user.lastName } />
             </ListItemButton>
+            </Link>
           </ListItem>
         );
       })}

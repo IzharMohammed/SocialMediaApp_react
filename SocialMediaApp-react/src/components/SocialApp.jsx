@@ -21,7 +21,6 @@ function SocialApp() {
   return (
     <div>
        <postsContext.Provider value={{posts , setPost}}>
-           <Navbar />
            <Input />
     `     <MainContainer />
        </postsContext.Provider>
