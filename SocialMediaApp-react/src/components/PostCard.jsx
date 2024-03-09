@@ -12,7 +12,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import { useState , memo } from "react";
- function PostCard({name , image , content , date }) {
+ function PostCard({name , image , content , date ,id }) {
   const [isLiked, setisLiked] = useState(true);
   return (
     <Card sx={{ maxWidth: 345 , mb : "3rem"}}>
@@ -39,6 +39,7 @@ import { useState , memo } from "react";
       <CardContent>
         <Typography variant="body2" color="text.secondary">
          {content}
+         {id}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
