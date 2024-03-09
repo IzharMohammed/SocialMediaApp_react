@@ -19,7 +19,6 @@ export default function UserList() {
         },
       })
       .then((resopnse) => {
-        console.log(resopnse.data.data);
         setUsers(resopnse.data.data);
       });
   }, []);
