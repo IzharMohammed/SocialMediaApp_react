@@ -15,12 +15,11 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
-
+import { Typography } from "@mui/material";
 
 
 function PostDetails() {
     let date = new Date();
-
   const { postid } = useParams();
   const [post, setPost] = useState({});
   const [isLiked, setisLiked] = useState(true);
@@ -32,15 +31,15 @@ function PostDetails() {
       headers: {
         "app-id": import.meta.env.VITE_APP_ID,
       },
-    })
-    .then((response) => {
+    }).then((response) => {
       setPost(response.data);
       setLoading(false);
+      console.log('Bug detected !!!');
     });
 
   const deletepost = (id) => {
     axios
-      .delete(`https://dummyapi.io/data/v1/post/${postid}`, {
+      .delete(`https://dummyapi.io/data/v1/post/${id}`, {
         headers: {
           "app-id": import.meta.env.VITE_APP_ID,
         },
@@ -54,6 +53,7 @@ function PostDetails() {
   };
 
   const updatePost = (id) =>{
+    setLoading(true);
     console.log(id);
     console.log(updatedText);
     axios.put(`https://dummyapi.io/data/v1/post/${id}`, 
@@ -63,14 +63,12 @@ function PostDetails() {
             "app-id": import.meta.env.VITE_APP_ID,
         }
     }).then(response=>{
-          console.log("Mission Successful ....");
+        console.log("Mission Successful ....");
         console.log(response);
         setUpdate(true);
+        setLoading(false);
       })
 }
-
-
-
 
 const handleTextChange = (e)=>{
     e.preventDefault();
@@ -80,7 +78,6 @@ const handleTextChange = (e)=>{
 
     const toggleChange = () =>{
     setUpdate(false);
-
     }
 
   if (loading) {
@@ -103,15 +100,15 @@ const handleTextChange = (e)=>{
         />
         <CardMedia
           component="img"
-          height="194"
+          height="394"
           image={post.image}
           alt="Paella dish"
         />
         {
-            update ?   post.text :    <TextField sx={{width : '20rem',mt: "1rem",ml:"1rem"}} value={updatedText} onChange={handleTextChange} id="standard-basic" label="Standard" variant="standard" />
+            update ? <Typography sx={{mx : '6rem' , mt : '1rem' , fontSize : '1.5rem'}}>{post.text}</Typography>    :    <TextField sx={{width : '20rem',mt: "1rem",ml:"1rem"}} value={updatedText} onChange={handleTextChange} id="standard-basic" label="Standard" variant="standard" />
         }
         
-        <CardActions disableSpacing>
+        <CardActions disableSpacing sx={{mx : '4rem'}}>
 
           <IconButton   aria-label="add to favorites"  onClick={() => setisLiked(!isLiked)}  >
             {isLiked ? (<FavoriteBorderIcon />) : ( <FavoriteOutlinedIcon sx={{ color: red[500] }} />)}

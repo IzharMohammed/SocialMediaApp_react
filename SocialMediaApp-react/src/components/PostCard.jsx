@@ -32,14 +32,13 @@ import { useState , memo } from "react";
       />
       <CardMedia
         component="img"
-        height="194"
+        height="394"
         image={image}
         alt="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
          {content}
-         {id}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
